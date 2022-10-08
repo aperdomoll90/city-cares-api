@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+   <head>
+      <title></title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">   
+   </head>
+   <body>
+      {% if error_message %}
+       <div class="alert alert-warning">
+           <h8>{{ error_message }}</h8>
+       </div>
+       {% endif %}
+      <div class="container-xxl">  
+         <table class="table">
+         <tr>
+         <td>
+         </td>
+         <td>
+
+            <p><br><br></p>
+            {% if filename %}
+               <div class="container-md">
+                  <div class="alert alert-success" role="alert">
+                     <h4 class="alert-heading">Your image has been classified!</h4>
+                     <p>{{ predict_message }}</p>
+                  </div> 
+                  <img src="{{url_for('static', filename=filename)}}" class="center" />
+               </div>   
+
+            {% else %}
+            <div class="container-md">
+                <form class="row g-3" method = "POST" enctype = "multipart/form-data">
+                  <label for="formFileLg" class="form-label">
+                     <h4>Upload your file to classify</h4>
+                  </label>
+                  
+                  <input type = "file" name = "file" class="form-control"/>
+                  <div class="container-sm"></div>
+                  <input type="submit" class="btn btn-primary mb-3"/>
+               </form>       
+            </div>
+            {% endif %}
+         </td>
+         </table>
+      </div>
+   </body>
+</html>
